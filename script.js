@@ -1,4 +1,3 @@
-// Theme Switcher Logic
 const themeToggleBtn = document.getElementById('themeToggleBtn');
 const savedTheme = localStorage.getItem('theme');
 
@@ -38,7 +37,7 @@ let currentLineIndex = 0;
 let syncedLrcLines = [];
 let lineStartTimes = []; 
 
-// File name update
+
 document.getElementById('audioFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -47,16 +46,15 @@ document.getElementById('audioFile').addEventListener('change', function(e) {
     }
 });
 
-// Format Seconds to [mm:ss.xx]
 function formatTime(seconds) {
     let mins = Math.floor(seconds / 60);
     let secs = (seconds % 60).toFixed(2);
     return `[${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}]`;
 }
 
-// UI Update Function (FIXED)
+
 function updateLrcDisplay() {
-    // SIRF unhi lines ko jodna jo timestamp ho chuki hain
+
     let outputText = syncedLrcLines.join('\n');
     
     if (lines.length > 0 && currentLineIndex < lines.length) {
@@ -69,7 +67,7 @@ function updateLrcDisplay() {
     const lrcOutput = document.getElementById('lrcOutput');
     lrcOutput.value = outputText;
 
-    // Auto-scroll to bottom
+
     lrcOutput.scrollTop = lrcOutput.scrollHeight;
 
     if (currentLineIndex > 0) {
@@ -79,7 +77,7 @@ function updateLrcDisplay() {
     }
 }
 
-// Start Live Sync Mode (FIXED)
+
 document.getElementById('startSyncBtn').addEventListener('click', function() {
     const rawText = document.getElementById('rawLyrics').value.trim();
     if (!rawText) { 
@@ -87,14 +85,14 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
         return; 
     }
 
-    // Unfocus textarea so arrow keys don't scroll textarea
+
     document.getElementById('rawLyrics').blur();
 
-    // Raw text ko lines me divide karna
+
     lines = rawText.split('\n').map(l => l.trim()).filter(l => l !== '');
     currentLineIndex = 0;
     
-    // Header Info
+
     syncedLrcLines = ["[ar: Custom Studio]", "[ti: Precise Synced LRC]"];
     lineStartTimes = [];
     
@@ -107,7 +105,7 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
     player.play();
 });
 
-// UNDO Functionality
+
 function undoLastSync() {
     if (currentLineIndex > 0) {
         currentLineIndex--;
@@ -127,7 +125,6 @@ function undoLastSync() {
 
 document.getElementById('undoBtn').addEventListener('click', undoLastSync);
 
-// Keyboard Listener
 document.addEventListener('keydown', function(e) {
     if (document.activeElement.tagName === 'TEXTAREA' && document.activeElement.id === 'rawLyrics') {
         return;
@@ -142,7 +139,6 @@ document.addEventListener('keydown', function(e) {
         if (lines.length > 0 && currentLineIndex < lines.length) {
             let currentTime = player.currentTime;
             lineStartTimes.push(currentTime);
-            // Dynamic timestamp tag add karna
             syncedLrcLines.push(`${formatTime(currentTime)} ${lines[currentLineIndex]}`);
             currentLineIndex++;
             updateLrcDisplay();
@@ -154,7 +150,6 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// Download .lrc File
 document.getElementById('downloadBtn').addEventListener('click', function() {
     const blob = new Blob([syncedLrcLines.join('\n')], { type: 'text/plain' });
     const a = document.createElement('a');
