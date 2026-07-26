@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-    /* 🌙 Modern Dark Theme Variables */
     --bg-main: #07090e;
     --glass-card: rgba(18, 22, 31, 0.65);
     --glass-input: rgba(13, 17, 23, 0.7);
     --glass-border: rgba(255, 255, 255, 0.08);
     --glass-border-hover: rgba(0, 242, 254, 0.35);
 
-    /* Professional Accent Palette */
     --accent-primary: #00f2fe;
     --accent-primary-hover: #4facfe;
     --accent-green: #1db954;
@@ -16,24 +14,20 @@
     --accent-red: #ff4757;
     --accent-blue: #007bff;
 
-    /* Text & Glow Effects */
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --glow-color: rgba(0, 242, 254, 0.15);
     --glow-strong: rgba(0, 242, 254, 0.35);
     --github-bg: rgba(255, 255, 255, 0.05);
 
-    /* Dynamic Button Variables (Default Dark) */
     --btn-bg: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
     --btn-text: #ffffff;
     --btn-shadow: rgba(0, 114, 255, 0.3);
 
-    /* Cubic-Bezier Curves for Ultra Smooth Animations */
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ☀️ Light Theme Variables */
 [data-theme="light"] {
     --bg-main: #eef2f6;
     --glass-card: rgba(255, 255, 255, 0.85);
@@ -47,7 +41,6 @@
     --glow-strong: rgba(0, 114, 255, 0.3);
     --github-bg: rgba(255, 255, 255, 0.85);
 
-    /* Light Mode Button High-Contrast Overrides */
     --btn-bg: linear-gradient(135deg, #0052d4 0%, #4364f7 50%, #6fb1fc 100%);
     --btn-text: #ffffff;
     --btn-shadow: rgba(0, 82, 212, 0.35);
@@ -61,7 +54,6 @@
     background: radial-gradient(circle, rgba(0, 242, 254, 0.12) 0%, rgba(255, 255, 255, 0) 70%);
 }
 
-/* Base Reset */
 * {
     margin: 0;
     padding: 0;
@@ -84,7 +76,6 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Ambient Glowing Background Orbs */
 body::before,
 body::after {
     content: '';
@@ -112,7 +103,6 @@ body::after {
     right: 10%;
 }
 
-/* Main Container Glassmorphism */
 .container {
     width: 100%;
     max-width: 950px;
@@ -147,7 +137,7 @@ body::after {
     }
 }
 
-/* Header Controls */
+
 .header-top {
     display: flex;
     justify-content: space-between;
@@ -170,7 +160,7 @@ body::after {
     gap: 12px;
 }
 
-/* Header Action Buttons */
+
 .theme-toggle-btn,
 .github-badge {
     height: 40px;
@@ -221,7 +211,7 @@ body::after {
     transform: rotate(360deg);
 }
 
-/* Player Section */
+
 .player-box {
     background: var(--glass-input);
     border: 1px solid var(--glass-border);
@@ -270,7 +260,6 @@ audio {
     outline: none;
 }
 
-/* Main Content Grid */
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -293,7 +282,7 @@ audio {
     letter-spacing: 1px;
 }
 
-/* Code & Input Textareas */
+
 textarea {
     width: 100%;
     flex-grow: 1;
@@ -317,7 +306,7 @@ textarea:focus {
     box-shadow: 0 0 25px var(--glow-strong);
 }
 
-/* FIXED FULL-VISIBILITY BUTTONS */
+
 button:not(.theme-toggle-btn) {
     background: var(--btn-bg) !important;
     color: var(--btn-text) !important;
@@ -367,7 +356,7 @@ button:not(.theme-toggle-btn):active {
     box-shadow: 0 10px 25px rgba(29, 185, 84, 0.45) !important;
 }
 
-/* Modern Gradient Shortcut Box */
+
 .shortcut-hint {
     background: var(--glass-input);
     border-left: 3px solid #0072ff;
@@ -386,7 +375,6 @@ button:not(.theme-toggle-btn):active {
     border-left-color: #00c6ff;
 }
 
-/* Breathing Pulse Animation */
 .pulse-btn {
     animation: bluePulse 2.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
@@ -405,7 +393,6 @@ button:not(.theme-toggle-btn):active {
     gap: 12px;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     body {
         height: auto;
@@ -429,7 +416,6 @@ button:not(.theme-toggle-btn):active {
     }
 }
 
-/* Modern Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
