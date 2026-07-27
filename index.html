@@ -35,6 +35,10 @@
         </label>
         <input type="file" id="audioFile" accept="audio/*">
         <span id="fileNameDisplay" style="margin-left: 10px; font-size: 13px; color: var(--text-secondary);">No file chosen</span>
+        
+        <!-- Audio Duration Display -->
+        <div id="durationDisplay" style="margin-top: 8px; font-weight: bold; font-size: 14px; color: var(--accent-orange, #ff6b00);"></div>
+        
         <br>
         <audio id="audioPlayer" controls></audio>
     </div>
@@ -46,7 +50,8 @@
         </div>
         <div>
             <h3>Generated Timestamps (.lrc)</h3>
-            <textarea id="lrcOutput" readonly placeholder="Live stamped lyrics will appear here..."></textarea>
+            <!-- REMOVED readonly so users can edit manually or press Enter -->
+            <textarea id="lrcOutput" placeholder="Live stamped lyrics will appear here. You can also edit text manually or press Enter to add ....."></textarea>
             
             <div class="btn-group">
                 <button id="undoBtn" class="btn-undo" style="display:none;">↩️ Undo (UP Arrow ⬆️)</button>
@@ -59,7 +64,8 @@
         <h3>⚡ Live Sync Tool</h3>
         <p class="shortcut-hint">
             ⬇️ Press <strong>[DOWN ARROW]</strong> to tag current line timestamp.<br>
-            ⬆️ Press <strong>[UP ARROW]</strong> to undo last line and rewind song 2.5 seconds.
+            ⬆️ Press <strong>[UP ARROW]</strong> to undo last line and rewind song 2.5 seconds.<br>
+            ⌨️ Press <strong>[LEFT ARROW]</strong> inside generated box to insert current timestamp + .....
         </p>
         <button id="startSyncBtn" class="pulse-btn" style="background:var(--accent-orange); color:#fff;">Start Live Sync Mode</button>
     </div>
