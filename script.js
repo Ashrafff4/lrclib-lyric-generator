@@ -41,7 +41,6 @@ let totalDurationInSeconds = 0;
 const audioPlayer = document.getElementById('audioPlayer');
 const lrcOutput = document.getElementById('lrcOutput');
 
-// Audio file select hone par source load karna
 document.getElementById('audioFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -50,7 +49,6 @@ document.getElementById('audioFile').addEventListener('change', function(e) {
     }
 });
 
-// Audio metadata load hone par exact duration fetch karna
 audioPlayer.addEventListener('loadedmetadata', function() {
     const totalSeconds = audioPlayer.duration;
     totalDurationInSeconds = Math.round(totalSeconds);
@@ -67,7 +65,6 @@ function formatTime(seconds) {
     return `[${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}]`;
 }
 
-// UI Status indicators (Start / Complete status text clean karna)
 function cleanStatusText(text) {
     return text.replace(/\n\nStart|\n\n🎉 ALL LINES SYNCED PERFECTLY!/g, '').trim();
 }
@@ -86,7 +83,6 @@ function updateLrcDisplay() {
     lrcOutput.value = outputText;
     lrcOutput.scrollTop = lrcOutput.scrollHeight;
 
-    // Show undo button if there are any added synced lines beyond standard 3 header lines
     if (syncedLrcLines.length > 3) {
         document.getElementById('undoBtn').style.display = 'block';
     } else {
@@ -106,7 +102,6 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
     lines = rawText.split('\n').map(l => l.trim()).filter(l => l !== '');
     currentLineIndex = 0;
 
-    // Standard LRC Headers
     syncedLrcLines = [
         "[ar: Custom Studio]", 
         "[ti: Precise Synced LRC]",
@@ -123,11 +118,11 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
 });
 
 function undoLastSync() {
-    // Check if there are any synced lines present beyond initial 3 headers
+
     if (syncedLrcLines.length > 3) {
         let removedLine = syncedLrcLines.pop();
         
-        // Agar pop ki gayi line dot marker nahi thi, balki lyric line thi, tabhi line index decrement hoga
+
         if (!removedLine.includes('.....') && currentLineIndex > 0) {
             currentLineIndex--;
         }
@@ -145,7 +140,7 @@ function undoLastSync() {
 
 document.getElementById('undoBtn').addEventListener('click', undoLastSync);
 
-// Helper function to insert dot line marker
+
 function insertDotMarker() {
     let currentTime = audioPlayer.currentTime;
     lineStartTimes.push(currentTime);
@@ -153,9 +148,9 @@ function insertDotMarker() {
     updateLrcDisplay();
 }
 
-// Global Shortcuts (Jab user rawLyrics Textarea me type NA kar raha ho)
+
 document.addEventListener('keydown', function(e) {
-    // Sirf Raw Lyrics Input box me typing karte waqt keys disable rahengi
+
     if (document.activeElement.id === 'rawLyrics') {
         return;
     }
@@ -164,7 +159,7 @@ document.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 
-    // Down Arrow: Sync Next Line
+
     if (e.key === 'ArrowDown') {
         if (lines.length > 0 && currentLineIndex < lines.length) {
             let currentTime = audioPlayer.currentTime;
@@ -175,24 +170,24 @@ document.addEventListener('keydown', function(e) {
         }
     } 
     
-    // Up Arrow: Undo Last Line or Marker
+
     if (e.key === 'ArrowUp') {
         undoLastSync();
     }
 
-    // Left Arrow: Add Timestamp with dots .....
+
     if (e.key === 'ArrowLeft') {
         insertDotMarker();
     }
 });
 
-// Manual typing / editing event listener
+
 lrcOutput.addEventListener('input', function() {
     let cleanedContent = cleanStatusText(this.value);
     syncedLrcLines = cleanedContent.split('\n');
 });
 
-// Final Download Handler
+
 document.getElementById('downloadBtn').addEventListener('click', function() {
     const finalLrcContent = cleanStatusText(lrcOutput.value);
     const blob = new Blob([finalLrcContent], { type: 'text/plain' });
