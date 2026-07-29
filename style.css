@@ -13,6 +13,7 @@
     --accent-green-hover: #1ed760;
     --accent-red: #ff4757;
     --accent-blue: #007bff;
+    --accent-orange: #ff6b00;
 
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
@@ -103,13 +104,15 @@ body::after {
     right: 10%;
 }
 
+
 .container {
     width: 100%;
-    max-width: 950px;
-    height: calc(100vh - 80px);
+    max-width: 1100px;
+    height: calc(100vh - 32px);
+    max-height: 880px;
     background: var(--glass-card);
     border: 1px solid var(--glass-border);
-    padding: 24px 28px;
+    padding: 20px 24px;
     border-radius: 24px;
     box-shadow: 
         0 25px 50px -12px rgba(0, 0, 0, 0.25),
@@ -121,7 +124,7 @@ body::after {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    overflow: hidden;
 }
 
 @keyframes containerIntro {
@@ -137,16 +140,16 @@ body::after {
     }
 }
 
-
 .header-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+    flex-shrink: 0;
 }
 
 .header-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
     background: linear-gradient(135deg, var(--text-primary) 30%, #0072ff 100%);
     -webkit-background-clip: text;
@@ -157,15 +160,15 @@ body::after {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
-
 .theme-toggle-btn,
-.github-badge {
-    height: 40px;
-    padding: 0 18px;
-    font-size: 0.85rem;
+.github-badge,
+.ai-fetch-btn {
+    height: 38px;
+    padding: 0 16px;
+    font-size: 0.82rem;
     background: var(--glass-input);
     color: var(--text-primary);
     border: 1px solid var(--glass-border);
@@ -186,16 +189,29 @@ body::after {
 }
 
 .theme-toggle-btn:hover,
-.github-badge:hover {
+.github-badge:hover,
+.ai-fetch-btn:hover {
     background: var(--glass-input);
     border-color: var(--accent-blue);
     color: var(--accent-blue);
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 8px 20px var(--glow-color);
 }
 
+.ai-fetch-btn {
+    border-color: rgba(0, 242, 254, 0.3);
+    color: var(--accent-primary);
+}
+
+.ai-fetch-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    box-shadow: 0 8px 20px var(--glow-strong);
+}
+
 .theme-toggle-btn:active,
-.github-badge:active {
+.github-badge:active,
+.ai-fetch-btn:active {
     transform: translateY(0) scale(0.98);
 }
 
@@ -211,15 +227,32 @@ body::after {
     transform: rotate(360deg);
 }
 
+#aiMetaDataCard {
+    background: var(--glass-input);
+    border: 1px solid var(--glass-border);
+    border-left: 4px solid var(--accent-primary);
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(12px);
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+#aiMetaDataCard:hover {
+    border-color: var(--glass-border-hover);
+    box-shadow: 0 8px 20px var(--glow-color);
+}
 
 .player-box {
     background: var(--glass-input);
     border: 1px solid var(--glass-border);
-    padding: 16px 22px;
+    padding: 14px 20px;
     border-radius: 16px;
     text-align: center;
     backdrop-filter: blur(16px);
     transition: var(--transition-smooth);
+    flex-shrink: 0;
 }
 
 .player-box:hover {
@@ -233,14 +266,14 @@ input[type="file"] {
 
 .custom-file-upload {
     display: inline-block;
-    padding: 9px 20px;
+    padding: 8px 18px;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--glass-border);
     border-radius: 30px;
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     backdrop-filter: blur(8px);
     transition: var(--transition-bounce);
 }
@@ -254,47 +287,51 @@ input[type="file"] {
 
 audio {
     width: 100%;
-    height: 38px;
-    margin-top: 12px;
+    height: 36px;
+    margin-top: 10px;
     border-radius: 12px;
     outline: none;
 }
+
 
 .grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-    margin-top: 14px;
+    margin-top: 12px;
     flex-grow: 1;
+    min-height: 0;
 }
 
 .grid > div {
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 .grid h3 {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    flex-shrink: 0;
 }
-
 
 textarea {
     width: 100%;
     flex-grow: 1;
-    min-height: 180px;
+    height: 100%;
+    min-height: 0;
     background: var(--glass-input);
     color: var(--text-primary);
     border: 1px solid var(--glass-border);
-    padding: 14px;
+    padding: 12px 14px;
     border-radius: 14px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    line-height: 1.6;
+    font-size: 12.5px;
+    line-height: 1.5;
     resize: none;
     backdrop-filter: blur(12px);
     transition: var(--transition-smooth);
@@ -303,47 +340,37 @@ textarea {
 textarea:focus {
     outline: none;
     border-color: #0072ff;
-    box-shadow: 0 0 25px var(--glow-strong);
+    box-shadow: 0 0 20px var(--glow-strong);
 }
 
-
-button:not(.theme-toggle-btn) {
+button:not(.theme-toggle-btn):not(.github-badge):not(.ai-fetch-btn) {
     background: var(--btn-bg) !important;
     color: var(--btn-text) !important;
     border: none !important;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 30px;
     cursor: pointer;
     font-weight: 700;
     width: 100%;
-    margin-top: 12px;
-    font-size: 0.9rem;
+    margin-top: 10px;
+    font-size: 0.85rem;
     letter-spacing: 0.4px;
     transition: var(--transition-bounce);
     box-shadow: 0 4px 18px var(--btn-shadow);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
-button:not(.theme-toggle-btn):hover {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow: 0 10px 28px var(--btn-shadow);
+button:not(.theme-toggle-btn):not(.github-badge):not(.ai-fetch-btn):hover {
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 8px 24px var(--btn-shadow);
     filter: brightness(1.1);
 }
 
-button:not(.theme-toggle-btn):active {
+button:not(.theme-toggle-btn):not(.github-badge):not(.ai-fetch-btn):active {
     transform: translateY(0) scale(0.99);
-}
-
-.btn-undo {
-    background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%) !important;
-    color: #ffffff !important;
-    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3) !important;
-}
-
-.btn-undo:hover {
-    box-shadow: 0 10px 25px rgba(255, 71, 87, 0.45) !important;
 }
 
 .btn-download {
@@ -353,22 +380,22 @@ button:not(.theme-toggle-btn):active {
 }
 
 .btn-download:hover {
-    box-shadow: 0 10px 25px rgba(29, 185, 84, 0.45) !important;
+    box-shadow: 0 8px 22px rgba(29, 185, 84, 0.45) !important;
 }
-
 
 .shortcut-hint {
     background: var(--glass-input);
     border-left: 3px solid #0072ff;
-    padding: 10px 14px;
+    padding: 8px 12px;
     border-radius: 10px;
-    font-size: 12.5px;
+    font-size: 11.5px;
     color: var(--text-secondary);
-    margin-top: 10px;
-    line-height: 1.5;
+    margin-top: 8px;
+    line-height: 1.4;
     text-align: left;
     backdrop-filter: blur(8px);
     transition: var(--transition-smooth);
+    flex-shrink: 0;
 }
 
 .shortcut-hint:hover {
@@ -384,35 +411,57 @@ button:not(.theme-toggle-btn):active {
         box-shadow: 0 0 0 0 rgba(0, 114, 255, 0.4);
     }
     50% {
-        box-shadow: 0 0 0 14px rgba(0, 114, 255, 0);
+        box-shadow: 0 0 0 12px rgba(0, 114, 255, 0);
     }
 }
 
 .btn-group {
     display: flex;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
 }
+
 
 @media (max-width: 768px) {
     body {
         height: auto;
+        min-height: 100vh;
         overflow-y: auto;
         padding: 12px;
     }
+
     .container {
         height: auto;
+        max-height: none;
         padding: 18px;
+        overflow: visible;
     }
+
     .grid { 
         grid-template-columns: 1fr; 
+        flex-grow: initial;
     }
+
+    textarea {
+        min-height: 200px;
+        height: auto;
+    }
+
     .header-top { 
         flex-direction: column; 
-        gap: 14px; 
+        gap: 12px; 
+        align-items: stretch;
     }
+
     .header-actions {
         width: 100%;
-        justify-content: center;
+        justify-content: space-between;
+    }
+
+    .ai-fetch-btn, .theme-toggle-btn, .github-badge {
+        flex: 1;
+        font-size: 0.78rem;
+        padding: 0 8px;
     }
 }
 
