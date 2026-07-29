@@ -38,7 +38,7 @@ let syncedLrcLines = [];
 let lineStartTimes = []; 
 let totalDurationInSeconds = 0;
 
-// Metadata Store
+
 let fetchedMetadata = {
     title: "Precise Synced LRC",
     artist: "Custom Studio",
@@ -48,17 +48,17 @@ let fetchedMetadata = {
 const audioPlayer = document.getElementById('audioPlayer');
 const lrcOutput = document.getElementById('lrcOutput');
 
-// Clean filename to search terms
+
 function cleanSearchQuery(filename) {
     return filename
-        .replace(/\.[^/.]+$/, "")                       // Remove extension (.mp3)
-        .replace(/\[.*?\]|\(.*?\)/g, "")               // Remove brackets content
-        .replace(/^[0-9\s\-_]+/, "")                   // Remove track numbers
-        .replace(/official|video|lyric|audio|hd|4k/gi, "") // Remove common keywords
+        .replace(/\.[^/.]+$/, "")                      
+        .replace(/\[.*?\]|\(.*?\)/g, "")              
+        .replace(/^[0-9\s\-_]+/, "")                   
+        .replace(/official|video|lyric|audio|hd|4k/gi, "")
         .trim();
 }
 
-// MusicBrainz Open API to fetch accurate Album & Song Details
+
 async function fetchMusicBrainzDetails(searchTerm) {
     try {
         const url = `https://musicbrainz.org/ws/2/recording/?query=${encodeURIComponent(searchTerm)}&fmt=json&limit=1`;
@@ -81,7 +81,7 @@ async function fetchMusicBrainzDetails(searchTerm) {
     return null;
 }
 
-// Process and display metadata
+
 async function processSongMetadata(file) {
     const aiMetaDataCard = document.getElementById('aiMetaDataCard');
     const metaTitle = document.getElementById('metaTitle');
@@ -125,7 +125,7 @@ async function processSongMetadata(file) {
     if (metaAlbum) metaAlbum.innerText = fetchedMetadata.album;
 }
 
-// Audio File Selection Handler
+
 document.getElementById('audioFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -135,7 +135,7 @@ document.getElementById('audioFile').addEventListener('change', function(e) {
     }
 });
 
-// Manual "AI Info Fetch" Button Handler
+
 const aiFetchBtn = document.getElementById('aiFetchBtn');
 if (aiFetchBtn) {
     aiFetchBtn.addEventListener('click', function() {
@@ -148,7 +148,7 @@ if (aiFetchBtn) {
     });
 }
 
-// Audio metadata duration logic
+
 audioPlayer.addEventListener('loadedmetadata', function() {
     const totalSeconds = audioPlayer.duration;
     totalDurationInSeconds = Math.round(totalSeconds);
@@ -165,7 +165,7 @@ function formatTime(seconds) {
     return `[${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}]`;
 }
 
-// Only synced lyrics lines will be displayed (no extra text)
+
 function updateLrcDisplay() {
     lrcOutput.value = syncedLrcLines.join('\n');
     lrcOutput.scrollTop = lrcOutput.scrollHeight;
@@ -175,7 +175,7 @@ function updateLrcDisplay() {
     }
 }
 
-// Sync Start Event
+
 document.getElementById('startSyncBtn').addEventListener('click', function() {
     const rawText = document.getElementById('rawLyrics').value.trim();
     if (!rawText) { 
@@ -188,7 +188,7 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
     lines = rawText.split('\n').map(l => l.trim()).filter(l => l !== '');
     currentLineIndex = 0;
 
-    // Direct plain list (No Header tags added here)
+
     syncedLrcLines = [];
     lineStartTimes = [];
     
@@ -199,7 +199,7 @@ document.getElementById('startSyncBtn').addEventListener('click', function() {
     audioPlayer.play();
 });
 
-// Undo Functionality
+
 function undoLastSync() {
     if (syncedLrcLines.length > 0) {
         let removedLine = syncedLrcLines.pop();
@@ -226,7 +226,7 @@ function insertDotMarker() {
     updateLrcDisplay();
 }
 
-// Global Shortcuts
+
 document.addEventListener('keydown', function(e) {
     if (document.activeElement.id === 'rawLyrics') {
         return;
@@ -259,7 +259,7 @@ lrcOutput.addEventListener('input', function() {
     syncedLrcLines = this.value.split('\n');
 });
 
-// Download plain LRC file
+
 document.getElementById('downloadBtn').addEventListener('click', function() {
     const finalLrcContent = lrcOutput.value.trim();
     const blob = new Blob([finalLrcContent], { type: 'text/plain' });
