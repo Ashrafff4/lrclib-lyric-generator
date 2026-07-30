@@ -37,7 +37,7 @@ A modern, fast, and sleek web application designed to generate synchronized `.lr
 | **UP ARROW** | Undo last tagged line and rewind audio by 2.5s |
 
 ---
-
+ 
 
 ### Local Setup
 
