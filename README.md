@@ -1,5 +1,6 @@
 # 🎵 Lrclib Lyric Generator (Studio LRC Precision Generator)
 
+
 [![MusicBrainz API](https://img.shields.io/badge/API-MusicBrainz-orange.svg)](https://musicbrainz.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
