@@ -65,4 +65,4 @@ A modern, fast, and sleek browser-based web application built to generate synchr
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/ashrafff4/lrclib-lyric-generator.git](https://github.com/ashrafff4/lrclib-lyric-generator.git)
+   git clone [https://github.com/ashrafff4/lrclib-lyric-generator.git](https://github.com/ashrafff4/lrclib-lyric-generator.git) 
